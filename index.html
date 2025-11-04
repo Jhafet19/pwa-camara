@@ -1,32 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="es">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pwa-camara</title>
-  </head>
-  <body>
-    <h1>Aplicación de Cámara PWA</h1>
+    <title>PWA Cámara</title>
+    
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#000000" />
+
+    <style>
+        #cameraContainer { display: none; margin-top: 10px; }
+        video, canvas { width: 320px; height: 240px; border: 2px solid black; }
+    </style>
+</head>
+<body>
+    <h2>PWA Cámara</h2>
 
     <button id="openCamera">Abrir Cámara</button>
 
-    <div id="cameraContainer" style="display: none">
-      <video id="video" autoplay playsinline></video>
-
-      <button id="takePhoto">Tomar Foto</button>
-      <canvas id="canvas" width="320" height="240"></canvas>
+    <div id="cameraContainer">
+        <video id="video" autoplay></video><br>
+        <button id="takePhoto">Tomar Foto</button>
+        <br>
+        <canvas id="canvas" width="320" height="240"></canvas>
     </div>
 
-    <canvas id="canvas"></canvas>
-
     <script src="app.js"></script>
+
     <script>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("sw.js")
-          .then(() => console.log("Service Worker registrado"))
-          .catch((err) => console.log("Error SW:", err));
-      }
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js")
+                .then(() => console.log("Service Worker registrado"))
+                .catch(err => console.log("Error SW:", err));
+        }
     </script>
-  </body>
+</body>
 </html>
