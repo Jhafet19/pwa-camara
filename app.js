@@ -22,7 +22,13 @@ async function openCamera() {
 }
 
 function takePhoto() {
-    ctx.drawImage(video, 0, 0,  320, 240);
+    const width = video.videoWidth;
+    const height = video.videoHeight;
+
+    canvas.width = width;
+    canvas.height = height;
+    
+    ctx.drawImage(video, 0, 0, width, height);    
     closeCamera();
 }
 
@@ -39,4 +45,5 @@ openCameraBtn.addEventListener("click", openCamera);
 takePhotoBtn.addEventListener("click", takePhoto);
 
 window.addEventListener("beforeunload", closeCamera);
+
 
