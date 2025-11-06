@@ -7,44 +7,116 @@
     <title>PWA Cámara</title>
 
     <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0b1120" />
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                sans-serif;
+            background: #0b1120;
+            color: #f9fafb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 480px;
+            padding: 16px;
+        }
+
+        h1 {
+            margin: 0 0 4px;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        p {
+            margin: 0 0 10px;
+            font-size: 0.9rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
         #cameraContainer {
             display: none;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         video,
         canvas {
-            display: block;
-            max-width: 100%;
-            width: 320px;
+            width: 100%;
             height: auto;
-            border: 2px solid black;
+            /* mantiene proporción */
+            border-radius: 8px;
+            border: 2px solid #020617;
+            background: #000;
+            display: block;
+        }
+
+        .buttons {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        #openCamera {
+            background: #22c55e;
+            color: #022c22;
+        }
+
+        #takePhoto {
+            background: #1f2933;
+            color: #f9fafb;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: default;
         }
     </style>
 </head>
 
 <body>
-    <h2>PWA Cámara</h2>
+    <div class="app">
+        <h1>Cámara PWA</h1>
+        <p>Abre la cámara, toma una foto y se quedará fija en el recuadro.</p>
 
-    <button id="openCamera">Abrir Cámara</button>
+        <div id="cameraContainer">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+        </div>
 
-    <div id="cameraContainer">
-        <video id="video" autoplay></video><br>
-        <button id="takePhoto">Tomar Foto</button>
-        <br>
-        <canvas id="canvas"></canvas>
+        <div class="buttons">
+            <button id="openCamera">Abrir cámara</button>
+            <button id="takePhoto" >Tomar foto</button>
+        </div>
     </div>
 
     <script src="app.js"></script>
-
     <script>
         if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("./sw.js")
+            navigator.serviceWorker
+                .register("./sw.js")
                 .then(() => console.log("Service Worker registrado"))
-                .catch(err => console.log("Error SW:", err));
+                .catch((err) => console.log("Error SW:", err));
         }
     </script>
 </body>
