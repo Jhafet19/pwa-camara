@@ -3,7 +3,10 @@ const urlsToCache = [
     "/",
     "/index.html",
     "/app.js",
-    "/manifest.json"
+    "/manifest.json",
+    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
+    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'
+
 ];
 
 self.addEventListener("install", e => {
