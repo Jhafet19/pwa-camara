@@ -2,7 +2,6 @@
     "name": "Cámara PWA Avanzada",
     "short_name": "CamaraPWA",
     "description": "Una aplicación web progresiva para acceder a la cámara, capturar fotos y funcionar sin conexión.",
-    "short_name": "Camera",
     "start_url": ".",
     "scope": ".",
     "orientation": "portrait",
@@ -26,6 +25,4 @@
             "purpose": "maskable"
         }
     ]
-
 }
-
